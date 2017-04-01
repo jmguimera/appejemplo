@@ -21,13 +21,6 @@ public class OracleDB {
             ods.setPassword("viviana1");
             conn = ods.getConnection();
             
-/*            OracleDataSource ods = new OracleDataSource();                                
-            String url = "jdbc:oracle:thin:@//127.0.0.1"+":"+puertoServer+"/"+sid;
-            ods.setURL(url);
-            ods.setUser(user);
-            ods.setPassword(password);
-            conn = ods.getConnection();             
-*/
          }
         catch (SQLException sqle){
             Logger.getLogger(OracleDB.class.getName()).log(Level.SEVERE, null, sqle);
@@ -45,10 +38,9 @@ public class OracleDB {
             
          }
         catch(SQLException sqle){
-                System.out.println("Ha ocurrido un error al intentar cerrar la conexion con Oracle. Error:" + sqle
-                        .getMessage());
-                System.out.println("Estado del SQL: "+sqle.getSQLState());
-                System.out.println("Código del Error:"+sqle.getErrorCode());           
+            System.out.println("Ha ocurrido un error al intentar cerrar la conexion con Oracle. Error:" + sqle.getMessage());
+            System.out.println("Estado del SQL: "+sqle.getSQLState());
+            System.out.println("Código del Error:"+sqle.getErrorCode());           
          }
     
     }

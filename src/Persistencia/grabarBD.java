@@ -9,28 +9,26 @@ import java.util.logging.Logger;
 /** @author José Miguel Guimerá Padrón.*/
 public class grabarBD {
     
-    
-    public grabarBD(){}    
-    
-    public static boolean grabandoBD(String dato1,String dato2){
+    public static boolean grabandoBD(String nom,String ape,String data,String mail,String telf){
         
         boolean ok=false;
         PreparedStatement ps = null;
         OracleDB db = new OracleDB();
-        String sqlq ="INSERT INTO AGENDA VALUES(?,?)";
-    
+        Object TIPO_DATOS=null;     
+        
+          String sqlq="insert into AGENDA values(?,?,TIPO_DATOS(?,?))";
         try{
           
             ps = db.conectarDB().prepareStatement(sqlq);
-            ps.setString(1, dato1);
-            ps.setString(2, dato2);
+            ps.setString(1, nom);
+            ps.setString(2, ape);
+            ps.setObject(3, TIPO_DATOS);
+            ps.setString(3, mail);
+            ps.setString(4, telf);
             
             ps.executeUpdate();
             
-//            db.cerrarDB();
-            
             ok=true;
-            
             
          }
         catch(SQLException sqle){
@@ -47,7 +45,6 @@ public class grabarBD {
                 ps.close();
                 ps = null;
                 db.cerrarDB();
-                db = null;
              }
             catch(SQLException sqle){
                 
@@ -60,9 +57,8 @@ public class grabarBD {
         
         }
         
-    
     return ok;
     
     }
     
-}
+} //fin clase grabarBD

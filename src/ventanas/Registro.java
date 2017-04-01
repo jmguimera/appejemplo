@@ -77,13 +77,6 @@ public class Registro extends JFrame implements ActionListener {
         if(e.getSource().equals(btnGuardar)){
         System.out.println("Lanzamos una rutina para grabar los datos");
 
-/*        dialogo = new JDialog();
-        dialogo.setSize(200,150);
-        dialogo.setLocationRelativeTo(null);
-        dialogo.setTitle("   *** Queco Jones ***");
-        dialogo.setVisible(true);
-        dialogo.setLayout(null);
-*/                       
             OracleDB conn=new OracleDB();
            
             if(conn!=null){
@@ -91,8 +84,10 @@ public class Registro extends JFrame implements ActionListener {
                 System.out.println("Base datos conectada "+conn);
                 String dat1=txtNombres.getText();
                 String dat2=txtApellidos.getText();
-                
-                if(grabarBD.grabandoBD(dat1,dat2)){
+                String dat3="CORREO";
+                String dat4="34922610051";
+                Object TIPO_DATOS=null;
+                if(grabarBD.grabandoBD(dat1,dat2,"TIPO_DATOS",dat3,dat4)){
                 
                     System.out.println("\nGrabación echa ok");
                 
@@ -105,4 +100,4 @@ public class Registro extends JFrame implements ActionListener {
         
     }
     
-}
+} //fin de la clase Registro

@@ -10,4 +10,4 @@ public class inicio {
        new Menu();
 
      }
- }
+ } //fin de la clase Inicio
