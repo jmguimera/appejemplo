@@ -1,6 +1,8 @@
 /** @author José Miguel Guimerá Padrón. */
 package ventanas;
 
+import Persistencia.OracleDB;
+import Persistencia.grabarBD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -10,6 +12,7 @@ public class Registro extends JFrame implements ActionListener {
     private JLabel labelSubtitulo,labelNombres,labelApellidos;
     private JTextField txtNombres,txtApellidos;
     private JButton btnGuardar,btnCancelar;
+    private JDialog dialogo;
     
     public Registro(){
         
@@ -26,7 +29,7 @@ public class Registro extends JFrame implements ActionListener {
     }
     
     public void componentes(){
-        
+     
         labelSubtitulo = new JLabel();
         labelSubtitulo.setBounds(92, 20, 260, 20);
         labelSubtitulo.setText("Rellene todos los recuadros");
@@ -72,7 +75,27 @@ public class Registro extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource().equals(btnGuardar)){
-            System.out.println("Lanzamos una rutina para grabar los datos");
+        System.out.println("Lanzamos una rutina para grabar los datos");
+
+/*        dialogo = new JDialog();
+        dialogo.setSize(200,150);
+        dialogo.setLocationRelativeTo(null);
+        dialogo.setTitle("   *** Queco Jones ***");
+        dialogo.setVisible(true);
+        dialogo.setLayout(null);
+*/                       
+            OracleDB conn=new OracleDB();
+           
+            if(conn!=null){
+            
+                System.out.println("Base datos conectada"+conn);
+                if(grabarBD.grabandoBD("datos numero 1","dato numero 2")){
+                
+                    System.out.println("Grabacion echa ok");
+                
+                }
+            
+            }
             this.dispose();
             new Menu();
         }
