@@ -46,7 +46,7 @@ public class grabarBD {
             try{
                 ps.close();
                 ps = null;
-//                db.cerrarDB();
+                db.cerrarDB();
                 db = null;
              }
             catch(SQLException sqle){

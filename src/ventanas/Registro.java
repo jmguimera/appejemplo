@@ -88,10 +88,13 @@ public class Registro extends JFrame implements ActionListener {
            
             if(conn!=null){
             
-                System.out.println("Base datos conectada"+conn);
-                if(grabarBD.grabandoBD("datos numero 1","dato numero 2")){
+                System.out.println("Base datos conectada "+conn);
+                String dat1=txtNombres.getText();
+                String dat2=txtApellidos.getText();
                 
-                    System.out.println("Grabacion echa ok");
+                if(grabarBD.grabandoBD(dat1,dat2)){
+                
+                    System.out.println("\nGrabación echa ok");
                 
                 }
             

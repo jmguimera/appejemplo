@@ -37,10 +37,10 @@ public class OracleDB {
         return conn;
      }
     
-/*    public void cerrarDB(){
+    public void cerrarDB(){
         try{
-//            conn.commit();
-//            conn.close();
+            conn.commit();
+            conn.close();
             conn=null;
             
          }
@@ -51,7 +51,7 @@ public class OracleDB {
                 System.out.println("Código del Error:"+sqle.getErrorCode());           
          }
     
-    }*/
+    }
 
     public Connection getConn() {
         return conn;
