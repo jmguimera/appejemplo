@@ -3,17 +3,19 @@ package ventanas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
-public class Menu extends JFrame implements ActionListener {
+public class Menu extends JFrame implements ActionListener,MouseListener {
     
-    private JLabel labelSubtitulo;
-    private JButton btnRegistro,btnSalir;
+    private JLabel labelSubtitulo,labelMensaje;
+    private JButton btnRegistro,btnSalir,btnModificar;
     
     public Menu(){
 
         componentes();
-                                                      // Al cerrar la ventana 
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// se detiene el programa 
         setSize(400,450); // Tamaño de la Ventana Ancho y Largo
         setLocationRelativeTo(null); // Centra la ventana en el monitor
@@ -36,12 +38,25 @@ public class Menu extends JFrame implements ActionListener {
             btnRegistro.setText("Registrar"); 
             add(btnRegistro);
             btnRegistro.addActionListener(this);
+            btnRegistro.addMouseListener(this);
+  
+            btnModificar=new JButton();
+            btnModificar.setBounds(120, 80, 150, 20);
+            btnModificar.setText("Modificar"); 
+            add(btnModificar);
+            btnModificar.addActionListener(this);
+            btnModificar.addMouseListener(this);
             
+            labelMensaje=new JLabel();
+            labelMensaje.setBounds(40,370, 350, 20);
+            add(labelMensaje);
+            
+                    
             btnSalir=new JButton();
             btnSalir.setBounds(120,400, 150, 20);
             btnSalir.setText("Salir");
             add(btnSalir);
-        
+            btnSalir.addActionListener(this);        
      }
 
     @Override
@@ -49,11 +64,49 @@ public class Menu extends JFrame implements ActionListener {
 
         if(e.getSource().equals(btnRegistro)){
 
-   //       System.out.println("Se ha pulsado el botón Registrar");
-   //       System.out.println("Esta accion abrira una futura ventana de Registro");
             this.dispose();            
             new Registro();
-        }
+         }
+        
+        if (e.getSource().equals(btnSalir)){
+            System.out.println("Estoy dentro de Salir");
+            this.dispose();
+
+         }        
+     }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
     }
-  
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        if(e.getSource().equals(btnRegistro)){
+        
+            labelMensaje.setText("Para insertar un nuevo registro en la tabla agenda");
+            labelMensaje.setVisible(true);
+        }   
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+         if(e.getSource().equals(btnRegistro)){
+        
+            labelMensaje.setText("");
+            labelMensaje.setVisible(false);
+        }       
+    }
+
 } // fin de la clase Menu

@@ -1,5 +1,5 @@
 /** @author José Miguel Guimerá Padrón. */
-package Persistencia;
+package persistencia;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class OracleDB {
             ods.setUser("josem");
             ods.setPassword("viviana1");
             conn = ods.getConnection();
-            
+           
          }
         catch (SQLException sqle){
             Logger.getLogger(OracleDB.class.getName()).log(Level.SEVERE, null, sqle);

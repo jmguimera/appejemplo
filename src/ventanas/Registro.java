@@ -1,8 +1,8 @@
 /** @author José Miguel Guimerá Padrón. */
 package ventanas;
 
-import Persistencia.OracleDB;
-import Persistencia.grabarBD;
+import persistencia.OracleDB;
+import persistencia.grabarBD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -10,6 +10,8 @@ import javax.swing.*;
 public class Registro extends JFrame implements ActionListener {
     
     private JLabel labelSubtitulo,labelNombres,labelApellidos;
+    private JLabel labelEmail,labelTelefono;
+    private JTextField txtEmail,txtTelefono;
     private JTextField txtNombres,txtApellidos;
     private JButton btnGuardar,btnCancelar;
     private JDialog dialogo;
@@ -25,6 +27,7 @@ public class Registro extends JFrame implements ActionListener {
         setResizable(false); // eviata que se pueda modificar el tamaño de ventana
         setVisible(true); // hace visible la ventana
         setTitle("  ** Módulo de Registros **"); // Le pone un titulo a la ventana    
+
     
     }
     
@@ -55,6 +58,24 @@ public class Registro extends JFrame implements ActionListener {
         txtApellidos.setBounds(90, 80, 300, 20);
         add(txtApellidos);
         
+        labelEmail = new JLabel(); //cambiado
+        labelEmail.setBounds(45, 110, 150, 20);
+        labelEmail.setText("Email");
+        add(labelEmail);
+        
+        txtEmail = new  JTextField();
+        txtEmail.setBounds(90, 110, 300, 20);
+        add(txtEmail);
+
+        labelTelefono = new JLabel(); //cambiado
+        labelTelefono.setBounds(20, 140, 150, 20);
+        labelTelefono.setText("Telefono");
+        add(labelTelefono);
+        
+        txtTelefono = new  JTextField();
+        txtTelefono.setBounds(90, 140, 120, 20);
+        add(txtTelefono);        
+        
         /*---------- Botones ----------*/
         
         btnGuardar = new JButton();
@@ -82,22 +103,29 @@ public class Registro extends JFrame implements ActionListener {
             if(conn!=null){
             
                 System.out.println("Base datos conectada "+conn);
+                
                 String dat1=txtNombres.getText();
                 String dat2=txtApellidos.getText();
-                String dat3="CORREO";
-                String dat4="34922610051";
-                Object TIPO_DATOS=null;
-                if(grabarBD.grabandoBD(dat1,dat2,"TIPO_DATOS",dat3,dat4)){
+                String dat3=txtEmail.getText();
+                String dat4=txtTelefono.getText();
+                
+                if(grabarBD.grabandoBD(dat1,dat2,dat3,dat4)){
                 
                     System.out.println("\nGrabación echa ok");
-                
-                }
+                 }
+             }
             
-            }
             this.dispose();
             new Menu();
-        }
+         }
         
-    }
+        if(e.getSource().equals(btnCancelar)){
+
+            this.dispose();
+            new Menu();
+        
+         }
+        
+     }
     
 } //fin de la clase Registro
